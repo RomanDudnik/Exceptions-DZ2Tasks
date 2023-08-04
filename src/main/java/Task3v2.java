@@ -30,6 +30,11 @@ import java.util.Scanner;
  * 3. Массив `abc` имеет размер 2, значение в `abc[3]` вызовет `ArrayIndexOutOfBoundsException`.(не ошибка для проверки блока `catch`)
  */
 // Вариант 2
+
+/**
+ * Этот код использует `Scanner` для чтения данных из файла "file.txt".
+ * Если файл не найден, будет выброшено исключение `FileNotFoundException`, которое затем будет обработано в блоке `catch` в методе `main`.
+ */
 public class Task3v2 {
     public static void main(String[] args) {
         try {
