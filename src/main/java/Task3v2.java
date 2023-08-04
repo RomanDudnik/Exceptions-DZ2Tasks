@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /**
  * Дан следующий код, исправьте его там, где требуется :
  * public static void main(String[] args) throws Exception {
@@ -25,18 +29,18 @@
  * 2. Исключение `IndexOutOfBoundsException` должно быть обработано перед `Throwable`, так как оно является его подклассом.
  * 3. Массив `abc` имеет размер 2, значение в `abc[3]` вызовет `ArrayIndexOutOfBoundsException`.(не ошибка для проверки блока `catch`)
  */
-
-public class Task3 {
+// Вариант 2
+public class Task3v2 {
     public static void main(String[] args) {
-        //Вариант 1
         try {
             int a = 90;
             int b = 3;
             System.out.println(a / b);
             printSum(23, 234);
             int[] abc = { 1, 2 };
-            abc[3] = 9;
-            // изменил порядок блоков `catch`, чтобы `IndexOutOfBoundsException` обрабатывалось до `Throwable`.
+            abc[2] = 9;
+        } catch (FileNotFoundException ex) {
+            System.out.println("Файл не найден!");
         } catch (ArithmeticException ex) {
             System.out.println("Деление на ноль!");
         } catch (NullPointerException ex) {
@@ -48,12 +52,19 @@ public class Task3 {
         }
     }
 
-    /** удалил выбрасывание `FileNotFoundException` из сигнатуры метода `printSum`
-    поскольку в его реализации не генерируется это исключение*/
-    public static void printSum(Integer a, Integer b) {
+    public static void printSum(Integer a, Integer b) throws FileNotFoundException {
+        // Чтение данных из файла
+        File file = new File("file.txt");   // используем `Scanner` для чтения данных из файла "file.txt"
+        Scanner scanner = new Scanner(file);
+        int sum = 0;
+        while (scanner.hasNextInt()) {
+            sum += scanner.nextInt();
+        }
+        scanner.close();
+
+        // Вывод суммы
+        System.out.println("Сумма из файла: " + sum);
         System.out.println(a + b);
     }
-
-    // Вариант 2 - файл Task3v2.java
-
 }
+
