@@ -19,7 +19,7 @@ public class Task2 {
 
         try {
             int[] intArray = new int[10];       // инициализируем массив `intArray` размером 10 элементов
-            int d = 1;                              // присваиваем переменной `d` значение 1, чтобы избежать деления на 0
+            int d = 1;                              // присваиваем переменной `d` значение 1, чтобы избежать деления на 0 (или исключение `ArithmeticException` при 0).
             double catchedRes1 = intArray[8] / d;
             System.out.println("catchedRes1 = " + catchedRes1);
         } catch (ArithmeticException e) {
